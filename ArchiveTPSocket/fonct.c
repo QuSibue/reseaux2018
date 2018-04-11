@@ -1,5 +1,7 @@
+#include "fonct.h"
 
-char * get_mot(const char * name,char *mot){
+
+int get_mot(const char * name,char *mot){
   FILE *file;
   int numero_ligne;
   int numero_ligne_max;
@@ -9,9 +11,9 @@ char * get_mot(const char * name,char *mot){
   fscanf(file, "%d", &numero_ligne_max);
   numero_ligne = rand() % numero_ligne_max;
 
-  while (fscanf(file, "%s",mot) != EOF && i<numero_ligne_max){
+  while (fscanf(file, "%s",mot) != EOF && i<numero_ligne){
     i++;
   }
     fclose(file);
-    return mot;
+    return 1;
 }

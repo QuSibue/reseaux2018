@@ -1,4 +1,11 @@
-3
+10
 parler
 chanter
-tchoin
+bonjour
+dinosaure
+troubadour
+marchand
+detruire
+courir
+melanger
+boire

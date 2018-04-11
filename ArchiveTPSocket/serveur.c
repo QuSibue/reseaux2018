@@ -12,6 +12,7 @@
 /******************************************************************************/
 
 #include<stdio.h>
+#include<string.h>
 #include <curses.h>
 
 #include<sys/signal.h>
@@ -20,12 +21,19 @@
 
 #include "fon.h"     		/* Primitives de la boite a outils */
 #include "fonct.h"
+#include "time.h"
 
 #define SERVICE_DEFAUT "1111"
+#define TAILLEMAX 27
 
 char *mot_cache;																																//on instancie le mot qui sera revelé par le jougados voila
-char *mot;																																			//on instancie le mot qui correspond a ce qu'on cherche
-int nbessaies;																																// nb essais possible
+char mot[TAILLEMAX];																																			//on instancie le mot qui correspond a ce qu'on cherche
+int nbessaies;
+int fini;
+
+int id_socket;
+struct sockaddr_in *p_adr_socket;
+struct sockaddr_in *p_adr_client;
 
 void serveur_appli (char *service);   /* programme serveur */
 
@@ -35,7 +43,7 @@ void serveur_appli (char *service);   /* programme serveur */
 
 int main(int argc,char *argv[])
 {
-
+	srand(time(NULL));
 	char *service= SERVICE_DEFAUT; /* numero de service par defaut */
 
 
@@ -56,8 +64,6 @@ int main(int argc,char *argv[])
 
 	/* service est le service (ou numero de port) auquel sera affecte
 	ce serveur*/
-	get_mot("mot.txt",mot);
-	printf("%s",mot);
 
 	serveur_appli(service);
 }
@@ -71,6 +77,24 @@ void serveur_appli(char *service)
 {
 
 /* A completer ... */
+
+	id_socket = h_socket(AF_INET,SOCK_STREAM);
+	adr_socket(service,"127.0.0.1",SOCK_STREAM,&p_adr_socket);
+	h_bind(id_socket,p_adr_socket);
+
+	h_listen(id_socket,10);
+	h_accept(id_socket,p_adr_client);
+
+	get_mot("./mots.txt",mot);
+	mot_cache = malloc(strlen(mot) * sizeof(char) );
+	memset(mot_cache,'-',strlen(mot));
+
+	while (!fini){
+
+		fini = nbessaies = 0 || (strcmp(mot,mot_cache) == 0);
+	}
+
+
 
 }
 
