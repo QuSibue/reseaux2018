@@ -2,4 +2,4 @@
 #include<stdlib.h>
 
 
-char * get_mot(const char* name);
+char * get_mot(const char* name,char *mot);

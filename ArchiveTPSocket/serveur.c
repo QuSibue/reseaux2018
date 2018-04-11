@@ -56,8 +56,8 @@ int main(int argc,char *argv[])
 
 	/* service est le service (ou numero de port) auquel sera affecte
 	ce serveur*/
-
-	printf("%s",get_mot("mot.txt"));
+	get_mot("mot.txt",mot);
+	printf("%s",mot);
 
 	serveur_appli(service);
 }

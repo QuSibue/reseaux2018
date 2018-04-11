@@ -1,10 +1,9 @@
 
-char * get_mot(const char * name){
+char * get_mot(const char * name,char *mot){
   FILE *file;
   int numero_ligne;
   int numero_ligne_max;
   int i=0;
-  char *mot;
 
   file = fopen(name,"r");
   fscanf(file, "%d", &numero_ligne_max);
