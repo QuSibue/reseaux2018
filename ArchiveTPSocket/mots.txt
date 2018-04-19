@@ -9,3 +9,4 @@ detruire
 courir
 melanger
 boire
+dormir
